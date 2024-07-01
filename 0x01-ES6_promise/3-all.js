@@ -1,11 +1,13 @@
 import { uploadPhoto, createUser } from './utils';
 
 async function handleProfileSignup() {
-  const user = createUser();
-  const response1 = await uploadPhoto();
-  user.then((response2) => {
-    console.log(`${response1.body} ${response2.firstName} ${response2.lastName}`);
-  });
+  return Promise.all([uploadPhoto(), createUser()])
+    .then((resp) => {
+      console.log(`${resp[0].body} ${resp[1].firstName} ${resp[1].lastName}`);
+    })
+    .catch(() => {
+      console.error('One or more promises failed');
+    });
 }
 
 export default handleProfileSignup;
