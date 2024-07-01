@@ -6,7 +6,7 @@ async function handleProfileSignup() {
       console.log(`${resp[0].body} ${resp[1].firstName} ${resp[1].lastName}`);
     })
     .catch(() => {
-      console.error('Signup system offline');
+      console.log('Signup system offline');
     });
 }
 
