@@ -25,6 +25,30 @@ const student2: Student = {
 const studentArray = [student1, student2];
 
 function renderTable(studentArray: StudentArray) {
+	const style = document.createElement('style');
+	style.textContent = `
+		body: {
+			display: flex;
+			align-items: center;
+
+			border: red;
+		}
+		table {
+			width: 50%;
+			margin: auto;
+			border-collapse: collapse;
+		}
+		th, td {
+			border: 1px solid black;
+			padding: 10px;
+			text-align: left;
+		}
+		th {
+			background-color: #f2f2f2;
+		}
+	`;
+	document.head.appendChild(style);
+
 	const table = document.createElement('table')
 	const headerRow = document.createElement('tr');
 	const headerFirstName = document.createElement('th')
