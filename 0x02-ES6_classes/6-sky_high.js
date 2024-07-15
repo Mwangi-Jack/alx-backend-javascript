@@ -4,7 +4,7 @@ import Building from './5-building';
 class SkyHighBuilding extends Building {
   constructor(sqft, floors) {
     super(sqft);
-    this._floor = floors;
+    this._floors = floors;
   }
 
   get sqft() {
@@ -16,7 +16,7 @@ class SkyHighBuilding extends Building {
   }
 
   evacuationWarningMessage() {
-    return 'Evacuate slowly the NUMBER_OF_FLOORS floors';
+    return `Evacuate slowly the ${this._floors} floors`;
   }
 }
 
