@@ -3,7 +3,7 @@
 /* eslint-disable indent */
 const fs = require('fs');
 
-function countStudents (db) {
+function countStudents(db) {
   try {
     const data = fs.readFileSync(db, 'utf-8');
     const lines = data.split('\n').filter((line) => line.trim() !== '');
