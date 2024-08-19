@@ -4,9 +4,16 @@ const hostname = '127.0.0.1';
 const port = '1245';
 
 const app = createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello Holberton School!');
+  console.log('REQUEST::', req);
+  const { method, path } = req;
+
+  if (path === '/' && method === 'GET') {
+    res.statusCode = 200;
+    res.end('Hello Holberton School!');
+  } else if (path === '/students' && method === 'GET') {
+    res.statusCode = 200;
+    res.end('his is the list of our students');
+  }
 });
 
 app.listen(port, hostname, () => {
