@@ -2,7 +2,7 @@
 /* eslint-disable guard-for-in */
 const fs = require('fs');
 
-function countStudents (db) {
+function countStudents(db) {
   return new Promise((resolve, reject) => {
     fs.readFile(db, 'utf-8', (err, data) => {
       if (err) {
