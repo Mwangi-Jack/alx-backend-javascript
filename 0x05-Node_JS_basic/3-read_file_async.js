@@ -29,7 +29,7 @@ function countStudents(db) {
       for (const stat in studentStats) {
         output += `Number of students in ${stat}: ${studentStats[stat].length}. List: ${studentStats[stat].join(', ')}\n`;
       }
-      resolve(output);
+      resolve(output.trim());
     });
   });
 }
