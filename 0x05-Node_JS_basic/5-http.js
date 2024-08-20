@@ -17,8 +17,6 @@ const app = http.createServer(async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server running On http://localhost:${port}`);
-});
+app.listen(port);
 
 module.exports = app;
