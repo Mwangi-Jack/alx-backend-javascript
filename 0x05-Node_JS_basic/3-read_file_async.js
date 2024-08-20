@@ -25,10 +25,11 @@ function countStudents(db) {
         }
       });
       console.log(`Number of students: ${numberOfStudents}`);
+      let output = `Number of students: ${numberOfStudents} \n`;
       for (const stat in studentStats) {
-        console.log(`Number of students in ${stat}: ${studentStats[stat].length}. List: ${studentStats[stat].join(', ')}`);
+        output += `Number of students in ${stat}: ${studentStats[stat].length}. List: ${studentStats[stat].join(', ')}\n`;
       }
-      resolve();
+      resolve(output);
     });
   });
 }
