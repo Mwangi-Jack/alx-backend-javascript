@@ -5,7 +5,6 @@ const app = express();
 const port = 1245;
 const db = process.argv[2];
 
-
 app.get('/', (req, res) => {
   res.statusCode = 200;
   res.end('Hello Holberton School!');
