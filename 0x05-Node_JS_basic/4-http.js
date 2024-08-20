@@ -1,6 +1,6 @@
 const { createServer } = require('node:http');
 
-const port = '1245';
+const port = 1245;
 
 const app = createServer((req, res) => {
   res.setHeader('Content-Type', 'text/plain');
