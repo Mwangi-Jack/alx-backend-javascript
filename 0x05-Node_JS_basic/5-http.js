@@ -14,7 +14,11 @@ const app = http.createServer((req, res) => {
     countStudents(db).then((data) => {
       res.statusCode = 200;
       res.end(`This is the list of our students\n${data}`);
-    });
+    })
+      .catch((err) => {
+        res.statusCode = 404;
+        res.end(err.message);
+      });
   }
 });
 

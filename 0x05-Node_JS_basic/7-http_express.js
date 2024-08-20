@@ -11,10 +11,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/students', (req, res) => {
-  countStudents(db).then((data) => {
-    res.statusCode = 200;
-    res.end(`This is the list of our students\n${data}`);
-  });
+  countStudents(db)
+    .then((data) => {
+      res.statusCode = 200;
+      res.end(`This is the list of our students\n${data}`);
+    })
+    .catch((err) => {
+      res.statusCode = 404;
+      res.send(err.message);
+    });
 });
 
 app.listen(port);
