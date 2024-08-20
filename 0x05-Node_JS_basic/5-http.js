@@ -2,6 +2,7 @@ const http = require('http');
 const countStudents = require('./3-read_file_async');
 
 const port = 1245;
+const db = process.argv[2];
 
 const app = http.createServer((req, res) => {
   const { method, url } = req;
@@ -10,7 +11,7 @@ const app = http.createServer((req, res) => {
     res.statusCode = 200;
     res.end('Hello Holberton School!');
   } else if (url === '/students' && method === 'GET') {
-    countStudents('database.csv').then((data) => {
+    countStudents(db).then((data) => {
       res.statusCode = 200;
       res.end(`This is the list of our students\n${data}`);
     });
