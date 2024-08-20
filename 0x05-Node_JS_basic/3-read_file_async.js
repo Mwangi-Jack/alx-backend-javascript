@@ -24,7 +24,7 @@ function countStudents(db) {
           studentStats[field].push(student[0]);
         }
       });
-      console.log(`Number of students: ${numberOfStudents}`);
+
       let output = `Number of students: ${numberOfStudents} \n`;
       for (const stat in studentStats) {
         output += `Number of students in ${stat}: ${studentStats[stat].length}. List: ${studentStats[stat].join(', ')}\n`;
