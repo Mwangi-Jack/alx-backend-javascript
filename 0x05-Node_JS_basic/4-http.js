@@ -3,6 +3,7 @@ const { createServer } = require('node:http');
 const port = '1245';
 
 const app = createServer((req, res) => {
+  res.setHeader('Content-Type', 'text/plain');
   res.statusCode = 200;
   res.end('Hello Holberton School!');
 });
