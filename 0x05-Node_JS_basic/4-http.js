@@ -9,7 +9,7 @@ const app = createServer((req, res) => {
 });
 
 app.listen(port, hostname, () => {
-  console.log(`Server running on: https://${hostname}:${port}`)
+  console.log(`Server running on: https://${hostname}:${port}`);
 });
 
 module.exports = app;
