@@ -18,7 +18,7 @@ app.get('/students', (req, res) => {
     })
     .catch((err) => {
       res.statusCode = 404;
-      res.send('Cannot load the database');
+      res.send(err.message);
     });
 });
 
