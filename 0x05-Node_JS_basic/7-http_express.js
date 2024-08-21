@@ -11,14 +11,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/students', (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('This is the list of our students\n');
   countStudents(db)
-    .then((data) => {
-      res.statusCode = 200;
-      res.end(`This is the list of our students\n${data}`);
+    .then(() => {
+      res.end();
     })
-    .catch(() => {
-      res.statusCode = 404;
-      res.send('Could ');
+    .catch((err) => {
+      res.write(err.message);
+      res.end();
     });
 });
 
