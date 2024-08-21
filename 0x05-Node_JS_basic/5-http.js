@@ -19,9 +19,6 @@ const app = http.createServer((req, res) => {
         res.write(err.message);
         res.end();
       });
-  } else {
-    res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('Not found');
   }
 });
 
