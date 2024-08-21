@@ -4,9 +4,6 @@ function countStudents(path) {
   return fs.readFile(path, 'utf-8')
     .then((data) => {
       const lines = data.trim().split('\n');
-      if (lines.length <= 1) {
-        throw new Error('No valid students in database');
-      }
 
       const students = lines.splice(1).map((line) => line.split(','));
 
