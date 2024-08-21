@@ -16,9 +16,9 @@ app.get('/students', (req, res) => {
       res.statusCode = 200;
       res.end(`This is the list of our students\n${data}`);
     })
-    .catch((err) => {
+    .catch(() => {
       res.statusCode = 404;
-      res.send(err.message);
+      res.send('Could ');
     });
 });
 
