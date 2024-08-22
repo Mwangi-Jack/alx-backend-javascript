@@ -10,8 +10,6 @@ function calculateNumber(type, a, b,) {
 		  return 'Error';
 		}
 		return roundA / roundB;
-	  } else {
-		throw new Error('Invalid type');
 	  }
 }
 

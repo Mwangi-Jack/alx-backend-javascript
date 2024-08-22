@@ -66,11 +66,4 @@ describe('CalculateNumber', function () {
 			assert.equal(calculateNumber('DIVIDE', 4.2, 3), 1.3333333333333333);
 		});
 	})
-	describe('Invalid type', () => {
-		it('should throw an error when an invalid type is passed', () => {
-		  assert.throws(() => {
-			calculateNumber('INVALID', 1.4, 3.8);
-		  }, /Invalid type/);
-		});
-	  });
 })
