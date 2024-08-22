@@ -1,15 +1,17 @@
 function calculateNumber(type, a, b,) {
+	const roundA = Math.round(a);
+	const roundB = Math.round(b);
 	switch (type) {
 		case 'SUM':
-			return Math.round(a) + Math.round(b);
+			return roundA + roundB;
 		case 'SUBTRACT':
-			return Math.round(a) - Math.round(b);
+			return roundA - roundB;
 		case 'DIVIDE':
-			if (Math.round(b) === 0){
+			if (roundB === 0){
 				return 'Error';
 			}
 
-			return Math.round(a) / Math.round(b);
+			return roundA / roundB;
 
 	}
 }
