@@ -5,7 +5,7 @@ describe('CalculateNumber', function () {
 	it('should round both numbers and return their sum', () => {
 		assert.equal(calculateNumber(4.6, 5.3), 10);
 		assert.equal(calculateNumber(1.4, 3.8), 5);
-	  });
+	});
 
 	it('should round negative numbers and return their sum', () => {
 	assert.equal(calculateNumber(-1.4, -3.8), -5);
