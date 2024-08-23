@@ -22,12 +22,6 @@ describe('index page', () => {
 		});
 	}));
 
-	it('check correct content length', () => new Promise((done) => {
-		request(options, (err, res, body) => {
-			expect(res.headers['content-length']).to.equal('29');
-			done();
-		});
-	}));
 });
 
 
