@@ -26,19 +26,15 @@ describe('index page', () => {
 
 
 describe('cart page', () => {
-	const options = {
-		url: 'http://localhost:7865/cart/12',
-		method: 'GET'
-	}
 	it('check correct status code for correct url', () => new Promise((done) => {
-		request(options, (err, res, body) => {
+		request.get('http://localhost:7865/cart/12', (err, res, body) => {
 			expect(res.statusCode).to.equal(200);
 			done();
 		});
 	}));
 
 	it('check correct content for correct url', () => new Promise((done) => {
-		request(options, (err, res, body) => {
+		request.get('http://localhost:7865/cart/12', (err, res, body) => {
 			expect(body).to.contain('Payment methods for cart 12');
 			done();
 		});
