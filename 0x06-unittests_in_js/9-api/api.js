@@ -3,11 +3,10 @@ const express = require('express');
 app = express();
 
 app.get('/', (req, res) => {
-	res.statusCode = 200
-	res.end('Welcome to the payment system');
+	res.send('Welcome to the payment system');
 })
 
-app.get('/cart/:id(\\d+)', (req, res) => {
+app.get('/cart/:id([0-9]+)', (req, res) => {
 	const id = req.params.id;
 	res.send(`Payment methods for cart ${id}`);
 })
