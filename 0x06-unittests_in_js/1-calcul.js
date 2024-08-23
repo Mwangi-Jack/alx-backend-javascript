@@ -6,10 +6,7 @@ function calculateNumber(type, a, b,) {
 	  } else if (type === 'SUBTRACT') {
 		return roundA - roundB;
 	  } else if (type === 'DIVIDE') {
-		if (roundB === 0) {
-		  return 'Error';
-		}
-		return roundA / roundB;
+		return roundB === 0 ? 'Error' : roundA / roundB
 	  }
 }
 
