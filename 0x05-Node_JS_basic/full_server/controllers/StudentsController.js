@@ -1,62 +1,33 @@
-/* eslint-disable class-methods-use-this */
-
 const readDatabase = require('../utils');
 
-const db = process.argv[2];
-
-class StudentController {
+class StudentsController {
   static getAllStudents(request, response) {
-    response.statusCode = 200;
-    readDatabase(db)
-      .then((data) => {
-        response.write('This is the list of our students\n');
-        for (const [k, v] of Object.entries(data)) {
-          response.write(`Number of students in ${k}: ${v.length}. List: ${v.join(', ')}\n`);
-        }
-        response.end();
-      })
-      .catch(() => {
-        response.status(500).send('Cannot load the database');
-      });
+    readDatabase(process.argv[2].toString()).then((students) => {
+      const output = [];
+      output.push('This is the list of our students');
+      const keys = Object.keys(students);
+      keys.sort();
+      for (let i = 0; i < keys.length; i += 1) {
+        output.push(`Number of students in ${keys[i]}: ${students[keys[i]].length}. List: ${students[keys[i]].join(', ')}`);
+      }
+      response.status(200).send(output.join('\n'));
+    }).catch(() => {
+      response.status(500).send('Cannot load the database');
+    });
   }
 
   static getAllStudentsByMajor(request, response) {
-    const { url } = request;
-    console.log(url);
-
-    switch (url) {
-      case '/students/SWE':
-        console.log('SWE');
-        response.statusCode = 200;
-        readDatabase(db)
-          .then((data) => {
-            response.statusCode = 200;
-            response.write(`List. ${data.SWE.join(', ')}`);
-            response.end();
-          })
-          .catch(() => {
-            response.statusCode = 500;
-            response.end('Cannot load the database');
-          });
-        break;
-      case '/students/CS':
-        console.log('CS');
-        readDatabase(db)
-          .then((data) => {
-            response.statusCode = 200;
-            response.write(`List. ${data.CS.join(', ')}`);
-            response.end();
-          })
-          .catch(() => {
-            response.statusCode = 500;
-            response.end('Cannot load the database');
-          });
-        break;
-      default:
-        response.statusCode = 500;
-        response.end('Major parameter must be CS or SWE');
-    }
+    const field = request.params.major;
+    readDatabase(process.argv[2].toString()).then((students) => {
+      if (!(field in students)) {
+        response.status(500).send('Major parameter must be CS or SWE');
+      } else {
+        response.status(200).send(`List: ${students[field].join(', ')}`);
+      }
+    }).catch(() => {
+      response.status(500).send('Cannot load the database');
+    });
   }
 }
 
-module.exports = StudentController;
+module.exports = StudentsController;

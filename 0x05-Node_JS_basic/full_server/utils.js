@@ -1,38 +1,26 @@
-const fs = require('fs');
+const { readFile } = require('fs');
 
-function readDatabase(path) {
+module.exports = function readDatabase(filePath) {
+  const students = {};
   return new Promise((resolve, reject) => {
-    fs.readFile(path, 'utf-8', (err, data) => {
+    readFile(filePath, (err, data) => {
       if (err) {
-        reject(Error('Could not load database'));
-        throw new Error('Could not load database');
-      }
-
-      const lines = data.trim().split('\n');
-      const students = lines.splice(1).map((line) => line.split(','));
-
-      const fields = {};
-
-      students.forEach((student) => {
-        const field = student[3];
-        const firstname = student[0];
-
-        if (!fields[field]) {
-          fields[field] = [];
+        reject(err);
+      } else {
+        const lines = data.toString().split('\n');
+        const noHeader = lines.slice(1);
+        for (let i = 0; i < noHeader.length; i += 1) {
+          if (noHeader[i]) {
+            const field = noHeader[i].toString().split(',');
+            if (Object.prototype.hasOwnProperty.call(students, field[3])) {
+              students[field[3]].push(field[0]);
+            } else {
+              students[field[3]] = [field[0]];
+            }
+          }
         }
-        fields[field].push(firstname);
-      });
-      resolve(fields);
+        resolve(students);
+      }
     });
   });
-}
-
-// readDatabase('../database.csv')
-//   .then((data) => {
-//     console.log(data);
-//   })
-//   .catch((err) => {
-//     console.log('READING ERROR::::', err);
-//   });
-
-module.exports = readDatabase;
+};
